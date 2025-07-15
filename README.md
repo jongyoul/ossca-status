@@ -14,11 +14,14 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project requires the following environment variables to be set:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `GITHUB_USERNAMES`: A comma-separated string of GitHub usernames whose issues and pull requests will be fetched. (e.g., `user1,user2,user3`)
+- `GITHUB_TOKEN`: A GitHub Personal Access Token with `public_repo` and `read:user` scopes. This token is used to authenticate with the GitHub API and fetch data.
+
+You can set these variables in a `.env.local` file for local development, or directly in your deployment platform (e.g., Vercel) settings.
 
 ## Learn More
 
