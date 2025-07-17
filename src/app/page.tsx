@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 5; // Revalidate every 5 seconds
+
 interface Issue {
   repo: string;
   number: number;
