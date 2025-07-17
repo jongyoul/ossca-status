@@ -132,16 +132,23 @@ export default async function Home() {
   const zeppelinSiteIssues = await getIssues('zeppelin-site', usernames);
   const allIssues = [...zeppelinIssues, ...zeppelinSiteIssues];
 
-  // Default sort by repo then by number
+  // Sort by repo (ascending) then by number (descending)
   allIssues.sort((a, b) => {
     if (a.repo < b.repo) return -1;
     if (a.repo > b.repo) return 1;
-    return a.number - b.number;
+    return b.number - a.number; // Descending order for issue number
   });
+
+  const totalIssues = allIssues.length;
+  const mergedIssues = allIssues.filter(issue => issue.merged).length;
+  const unmergedIssues = totalIssues - mergedIssues;
 
   return (
     <main className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">GitHub Issues</h1>
+      <p className="mb-2">Total Issues: {totalIssues}</p>
+      <p className="mb-2">Merged Issues: {mergedIssues}</p>
+      <p className="mb-4">Unmerged Issues: {unmergedIssues}</p>
       <div className="overflow-x-auto">
         <table className="min-w-full">
           <thead>
