@@ -147,7 +147,7 @@ export default async function Home() {
     <main className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">GitHub Issues</h1>
       <div className="mb-4">
-        <table className="min-w-full bg-white border border-gray-300">
+        <table className="min-w-full border border-gray-300">
           <thead>
             <tr>
               <th className="py-2 px-4 border-b">Category</th>
