@@ -146,9 +146,30 @@ export default async function Home() {
   return (
     <main className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">GitHub Issues</h1>
-      <p className="mb-2">Total Issues: {totalIssues}</p>
-      <p className="mb-2">Merged Issues: {mergedIssues}</p>
-      <p className="mb-4">Unmerged Issues: {unmergedIssues}</p>
+      <div className="mb-4">
+        <table className="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr>
+              <th className="py-2 px-4 border-b">Category</th>
+              <th className="py-2 px-4 border-b">Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="py-2 px-4 border-b">Total Issues</td>
+              <td className="py-2 px-4 border-b">{totalIssues}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Merged Issues</td>
+              <td className="py-2 px-4 border-b">{mergedIssues}</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4 border-b">Unmerged Issues</td>
+              <td className="py-2 px-4 border-b">{unmergedIssues}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div className="overflow-x-auto">
         <table className="min-w-full">
           <thead>
