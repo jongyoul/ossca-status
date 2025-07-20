@@ -1,5 +1,6 @@
 import { Octokit } from 'octokit';
 import type { Metadata } from 'next';
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: 'OSSCa Status',
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const revalidate = 5; // Revalidate every 5 seconds
+
 
 interface Issue {
   repo: string;
@@ -31,24 +32,8 @@ interface Issue {
   merged: boolean;
 }
 
-interface CacheEntry {
-  data: Issue[];
-  timestamp: number;
-}
-
-const issueCache: { [key: string]: CacheEntry } = {};
-const CACHE_DURATION = 5 * 1000; // 5 seconds
-
 async function getIssues(repo: string, usernames: string[]): Promise<Issue[]> {
-  const cacheKey = `${repo}-${usernames.join(',')}`;
-  const cachedData = issueCache[cacheKey];
-
-  if (cachedData && (Date.now() - cachedData.timestamp < CACHE_DURATION)) {
-    console.log(`Cache hit for ${cacheKey}`);
-    return cachedData.data;
-  }
-
-  console.log(`Cache miss for ${cacheKey}. Fetching from GitHub...`);
+  console.log(`Fetching issues for ${repo} from GitHub...`);
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
   const issues: Issue[] = [];
 
@@ -120,7 +105,6 @@ async function getIssues(repo: string, usernames: string[]): Promise<Issue[]> {
     }
   }
 
-  issueCache[cacheKey] = { data: issues, timestamp: Date.now() };
   return issues;
 }
 
