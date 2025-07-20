@@ -1,6 +1,6 @@
 import { Octokit } from 'octokit';
 import type { Metadata } from 'next';
-export const revalidate = 0;
+export const revalidate = 3;
 
 export const metadata: Metadata = {
   title: 'OSSCa Status',
