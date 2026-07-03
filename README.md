@@ -19,6 +19,8 @@ bun dev
 This project requires the following environment variables to be set:
 
 - `GITHUB_USERNAMES`: A comma-separated string of GitHub usernames whose issues and pull requests will be fetched. (e.g., `user1,user2,user3`)
+- `GITHUB_MENTOR_USERNAMES`: A comma-separated string of mentor GitHub usernames. These usernames are used to mark whether a pull request was approved by a mentor.
+- `GITHUB_PR_COUNT_START_DATE`: A date string in `YYYY-MM-DD` format. Pull request counts only include PRs created on or after this date.
 - `GITHUB_TOKEN`: A GitHub Personal Access Token with `public_repo` and `read:user` scopes. This token is used to authenticate with the GitHub API and fetch data.
 
 You can set these variables in a `.env.local` file for local development, or directly in your deployment platform (e.g., Vercel) settings.
