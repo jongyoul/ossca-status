@@ -69,6 +69,9 @@ page shell.
 GitHub fetching should scan pull requests in each tracked repository by
 creation date and filter tracked authors server-side. Do not scan GitHub once
 per tracked author; that makes the first data load unnecessarily slow.
+Fetching must follow paginated GitHub results until it reaches pull requests
+created before the tracking window or there are no more results. Do not assume
+the first 100 API results cover the full tracking window.
 
 When multiple requests arrive while a server instance is already fetching fresh
 GitHub data, those requests should share the in-flight fetch where possible.
@@ -87,6 +90,7 @@ For each tracked pull request, show:
 - GitHub link
 
 Do not show a type column. The table is pull-request-only.
+The table should allow sorting visible rows by merged status.
 
 ## Summary Counts
 
