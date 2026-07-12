@@ -130,6 +130,10 @@ function getCreatorRole(
   return 'Other';
 }
 
+function isTrackedPullRequestState(state: string, mergedAt: string | null): boolean {
+  return state === 'open' || Boolean(mergedAt);
+}
+
 async function getRepositoryPullRequests(
   repo: TrackedRepository,
   trackedAuthorSet: Set<string>,
@@ -162,6 +166,10 @@ async function getRepositoryPullRequests(
         if (!isOnOrAfter(pullRequest.created_at, prCountStartDate)) {
           reachedBeforeStartDate = true;
           break;
+        }
+
+        if (!isTrackedPullRequestState(pullRequest.state, pullRequest.merged_at)) {
+          continue;
         }
 
         const creator = pullRequest.user?.login || 'unknown';

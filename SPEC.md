@@ -46,6 +46,9 @@ Both mentee-authored and mentor-authored items are in scope.
 Include only GitHub pull requests created on or after
 `GITHUB_PR_COUNT_START_DATE`.
 
+Closed pull requests that were not merged are out of scope. The row list and
+counts should include open pull requests and merged pull requests only.
+
 There is no end date.
 
 Items created before the start date must not appear in the list and must not
@@ -104,7 +107,7 @@ The summary should count the same tracking window shown in the row list:
 - Mentee-authored PRs
 - Mentor-authored PRs
 - Merged PRs
-- Unmerged PRs
+- Unmerged PRs, meaning open pull requests that have not been merged yet
 
 These values should be shown in one summary table, not split into separate
 configuration and GitHub-count summary tables.
@@ -122,6 +125,7 @@ The rendered page should satisfy these checks:
 
 - tracked authors include both mentees and mentors
 - no item before `GITHUB_PR_COUNT_START_DATE` is shown
+- closed pull requests that were not merged are not shown
 - PR counts match the visible PR rows
 - merged and unmerged PR counts match row-level merged status
 - type or issue columns are not present
